@@ -1,13 +1,20 @@
-<h1 mat-dialog-title>Create new VM group</h1>
+<h1 mat-dialog-title>Create Network Access Policy</h1>
 <div mat-dialog-content>
   <mat-stepper labelPosition="bottom" #stepper>
     <mat-step>
-      <ng-template matStepLabel>Enter name</ng-template>
+      <ng-template matStepLabel>Create VM Group(s)</ng-template>
       <div class="step-content">
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Name</mat-label>
           <input matInput placeholder="Enter VM group name" />
         </mat-form-field>
+        <h4>Select VMs</h4>
+        <mat-selection-list>
+          <mat-list-option *ngFor="let vm of virtualMachines">
+            {{ vm.name }}
+          </mat-list-option>
+        </mat-selection-list>
+        <button mat-flat-button color="primary">Create group</button>
       </div>
       <div>
         <button class="step-buttons" mat-button matStepperNext>Next</button>
@@ -32,8 +39,8 @@
       <ng-template matStepLabel>Assign application</ng-template>
       <div class="step-content">
         <mat-selection-list [multiple]="false">
-          <mat-list-option *ngFor="let service of services | keyvalue">
-            {{ service.value.name }}
+          <mat-list-option *ngFor="let application of applications | keyvalue">
+            {{ application.value.name }}
           </mat-list-option>
         </mat-selection-list>
       </div>

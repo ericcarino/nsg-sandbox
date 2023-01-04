@@ -1,8 +1,8 @@
 export interface VirtualMachineGroup {
   name: string;
   virtualMachines: number[];
-  servicesProvided: string[];
-  servicesConsumed: string[];
+  servicesProvided?: string[];
+  servicesConsumed?: string[];
 }
 
 export interface VirtualMachine {
@@ -15,17 +15,25 @@ export interface VirtualMachine {
   }>;
 }
 
-export interface Service {
+export interface Application {
   name: string;
   protocol: string;
   port: number;
 }
 
-export interface ServiceAccessPolicy {
-  services: number[];
+export interface Service {
+  id: number;
+  application: ApplicationKey;
+  groups: VirtualMachineGroup[];
 }
 
-export enum ServiceKey {
+export interface ServiceAccessPolicy {
+  id: number;
+  services: number[];
+  groups: VirtualMachineGroup[];
+}
+
+export enum ApplicationKey {
   FTP = 'ftp',
   SSH = 'ssh',
   SMTP = 'smtp',
@@ -98,50 +106,48 @@ export const VirtualMachineGroups: VirtualMachineGroup[] = [
     name: 'My VM Group #1',
     virtualMachines: [1, 4],
     servicesProvided: ['ssh'],
-    servicesConsumed: ['ssh'],
   },
   {
     name: 'My VM Group #2',
     virtualMachines: [2],
-    servicesProvided: ['ftp'],
     servicesConsumed: ['ftp'],
   },
 ];
 
-export const Services: { [key: string]: Service } = {};
-Services[ServiceKey.FTP] = {
+export const Applications: { [key: string]: Application } = {};
+Applications[ApplicationKey.FTP] = {
   name: 'File Transfer Protocol',
-  protocol: ServiceKey.FTP,
+  protocol: ApplicationKey.FTP,
   port: 21,
 };
-Services[ServiceKey.SSH] = {
+Applications[ApplicationKey.SSH] = {
   name: 'Secure Shell',
-  protocol: ServiceKey.SSH,
+  protocol: ApplicationKey.SSH,
   port: 22,
 };
-Services[ServiceKey.SMTP] = {
+Applications[ApplicationKey.SMTP] = {
   name: 'Simple Mail Transfer Protocol',
-  protocol: ServiceKey.SMTP,
+  protocol: ApplicationKey.SMTP,
   port: 25,
 };
-Services[ServiceKey.DNS] = {
+Applications[ApplicationKey.DNS] = {
   name: 'Domain Name System',
-  protocol: ServiceKey.DNS,
+  protocol: ApplicationKey.DNS,
   port: 53,
 };
-Services[ServiceKey.HTTP] = {
+Applications[ApplicationKey.HTTP] = {
   name: 'Hypertext Transfer Protocol',
-  protocol: ServiceKey.HTTP,
+  protocol: ApplicationKey.HTTP,
   port: 80,
 };
-Services[ServiceKey.NTP] = {
+Applications[ApplicationKey.NTP] = {
   name: 'Network Time Protocol',
-  protocol: ServiceKey.NTP,
+  protocol: ApplicationKey.NTP,
   port: 123,
 };
-Services[ServiceKey.BGP] = {
+Applications[ApplicationKey.BGP] = {
   name: 'Border Gateway Protocol',
-  protocol: ServiceKey.BGP,
+  protocol: ApplicationKey.BGP,
   port: 179,
 };
 
