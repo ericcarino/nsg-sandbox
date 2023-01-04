@@ -15,6 +15,7 @@ import { CreateGroupDialogComponent } from './create-group-dialog/create-group-d
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
     MatStepperModule,
     MatListModule,
     MatInputModule,
+    MatSelectModule,
   ],
   declarations: [
     AppComponent,

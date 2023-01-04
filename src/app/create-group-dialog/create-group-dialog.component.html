@@ -3,6 +3,9 @@
   <mat-stepper labelPosition="bottom" #stepper>
     <mat-step>
       <ng-template matStepLabel>Create VM Group(s)</ng-template>
+      <p>
+        If needed, create your Virtual Machine Group(s). When done, click Next.
+      </p>
       <div class="step-content">
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Name</mat-label>
@@ -18,43 +21,81 @@
       </div>
       <div>
         <button class="step-buttons" mat-button matStepperNext>Next</button>
-        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
       </div>
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Select VMs</ng-template>
+      <ng-template matStepLabel>Create service</ng-template>
       <div class="step-content">
-        <mat-selection-list>
-          <mat-list-option *ngFor="let vm of virtualMachines">
-            {{ vm.name }}
-          </mat-list-option>
-        </mat-selection-list>
+        <div>
+          <mat-form-field appearance="outline" floatLabel="always">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter service name" />
+          </mat-form-field>
+        </div>
+        Assign
+        <mat-form-field appearance="outline">
+          <mat-label>VM Groups</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let group of virtualMachineGroups"
+              [value]="group"
+              >{{ group.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        to
+        <mat-form-field appearance="outline">
+          <mat-label>Application</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let application of applications | keyvalue"
+              [value]="application"
+              >{{ application.value.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
-        <button class="step-buttons" mat-button matStepperNext>Next</button>
-        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Assign application</ng-template>
-      <div class="step-content">
-        <mat-selection-list [multiple]="false">
-          <mat-list-option *ngFor="let application of applications | keyvalue">
-            {{ application.value.name }}
-          </mat-list-option>
-        </mat-selection-list>
-      </div>
-      <div>
-        <button class="step-buttons" mat-button matStepperNext>Next</button>
+        <button class="step-buttons" mat-button matStepperNext>Create</button>
         <button class="step-buttons" mat-button matStepperPrevious>Back</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Create policy</ng-template>
-      <div class="step-content"></div>
+      <p>Which VM Group will use the service created in the previous step?</p>
+      <div class="step-content">
+        <mat-form-field appearance="outline">
+          <mat-label>VM Groups</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let group of virtualMachineGroups"
+              [value]="group"
+              >{{ group.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
       <div>
         <button class="step-buttons" mat-button matStepperNext>Next</button>
         <button class="step-buttons" mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Confirm</ng-template>
+      <p>
+        The following Service Access Policy has been created. Would you like to
+        deploy?
+      </p>
+      <div class="step-content">
+        List details of policy here so user can confirm it looks correct.
+      </div>
+      <div>
+        <button class="step-buttons" mat-button matStepperNext>
+          Deploy policy
+        </button>
+        <button class="step-buttons" mat-button matStepperPrevious>
+          Exit without deploying
+        </button>
       </div>
     </mat-step>
   </mat-stepper>
