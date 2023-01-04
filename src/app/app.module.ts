@@ -12,6 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateGroupDialogComponent } from './create-group-dialog/create-group-dialog.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   imports: [
@@ -24,6 +27,9 @@ import { CreateGroupDialogComponent } from './create-group-dialog/create-group-d
     MatTabsModule,
     MatButtonModule,
     MatDialogModule,
+    MatStepperModule,
+    MatListModule,
+    MatInputModule,
   ],
   declarations: [
     AppComponent,

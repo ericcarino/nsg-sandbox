@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Service, Services, VirtualMachine, VirtualMachines } from '../data';
 
 @Component({
   selector: 'app-create-group-dialog',
@@ -12,4 +13,11 @@ export class CreateGroupDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  public get virtualMachines(): VirtualMachine[] {
+    return VirtualMachines;
+  }
+
+  public get services(): { [key: string]: Service } {
+    return Services;
+  }
 }

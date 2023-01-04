@@ -1,6 +1,54 @@
 <h1 mat-dialog-title>Create new VM group</h1>
-<div mat-dialog-content>Would you like to delete cat.jpeg?</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+<div mat-dialog-content>
+  <mat-stepper labelPosition="bottom" #stepper>
+    <mat-step>
+      <ng-template matStepLabel>Enter name</ng-template>
+      <div class="step-content">
+        <mat-form-field appearance="outline" floatLabel="always">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Enter VM group name" />
+        </mat-form-field>
+      </div>
+      <div>
+        <button class="step-buttons" mat-button matStepperNext>Next</button>
+        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Select VMs</ng-template>
+      <div class="step-content">
+        <mat-selection-list>
+          <mat-list-option *ngFor="let vm of virtualMachines">
+            {{ vm.name }}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+      <div>
+        <button class="step-buttons" mat-button matStepperNext>Next</button>
+        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Assign application</ng-template>
+      <div class="step-content">
+        <mat-selection-list [multiple]="false">
+          <mat-list-option *ngFor="let service of services | keyvalue">
+            {{ service.value.name }}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+      <div>
+        <button class="step-buttons" mat-button matStepperNext>Next</button>
+        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Create policy</ng-template>
+      <div class="step-content"></div>
+      <div>
+        <button class="step-buttons" mat-button matStepperNext>Next</button>
+        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
 </div>
