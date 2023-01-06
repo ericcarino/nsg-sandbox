@@ -3,21 +3,25 @@
   <mat-stepper labelPosition="bottom" #stepper>
     <mat-step>
       <ng-template matStepLabel>Create VM Group(s)</ng-template>
-      <p>
+      <p class="text-sm">
         If needed, create your Virtual Machine Group(s). When done, click Next.
       </p>
-      <div class="step-content">
+      <div class="step-content flex-col w-64 m-auto">
         <mat-form-field appearance="outline" floatLabel="always">
           <mat-label>Name</mat-label>
           <input matInput placeholder="Enter VM group name" />
         </mat-form-field>
         <h4>Select VMs</h4>
-        <mat-selection-list>
-          <mat-list-option *ngFor="let vm of virtualMachines">
-            {{ vm.name }}
-          </mat-list-option>
-        </mat-selection-list>
-        <button mat-flat-button color="primary">Create group</button>
+        <div class="max-h-72 overflow-y-scroll">
+          <mat-selection-list>
+            <mat-list-option *ngFor="let vm of virtualMachines">
+              {{ vm.name }}
+            </mat-list-option>
+          </mat-selection-list>
+        </div>
+        <div class="flex place-content-end mt-4">
+          <button mat-flat-button color="primary">Create group</button>
+        </div>
       </div>
       <div>
         <button class="step-buttons" mat-button matStepperNext>Next</button>
@@ -25,25 +29,14 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Create service</ng-template>
-      <div class="step-content">
+      <div class="step-content flex-col w-64 m-auto">
         <div>
           <mat-form-field appearance="outline" floatLabel="always">
             <mat-label>Name</mat-label>
             <input matInput placeholder="Enter service name" />
           </mat-form-field>
         </div>
-        Assign
-        <mat-form-field appearance="outline">
-          <mat-label>VM Groups</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let group of virtualMachineGroups"
-              [value]="group"
-              >{{ group.name }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-        to
+        <div>Assign</div>
         <mat-form-field appearance="outline">
           <mat-label>Application</mat-label>
           <mat-select>
@@ -54,18 +47,29 @@
             >
           </mat-select>
         </mat-form-field>
+        <div>to</div>
+        <mat-form-field appearance="outline">
+          <mat-label>VM Group</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let group of virtualMachineGroups"
+              [value]="group"
+              >{{ group.name }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
       </div>
       <div>
-        <button class="step-buttons" mat-button matStepperNext>Create</button>
+        <button class="step-buttons" mat-button matStepperNext>Create service</button>
         <button class="step-buttons" mat-button matStepperPrevious>Back</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Create policy</ng-template>
-      <p>Which VM Group will use the service created in the previous step?</p>
-      <div class="step-content">
+      <p class="text-sm">Which VM Group will use the service created in the previous step?</p>
+      <div class="step-content flex-col w-64 m-auto">
         <mat-form-field appearance="outline">
-          <mat-label>VM Groups</mat-label>
+          <mat-label>Select VM group</mat-label>
           <mat-select>
             <mat-option
               *ngFor="let group of virtualMachineGroups"
@@ -94,7 +98,7 @@
           Deploy policy
         </button>
         <button class="step-buttons" mat-button matStepperPrevious>
-          Exit without deploying
+          Back
         </button>
       </div>
     </mat-step>

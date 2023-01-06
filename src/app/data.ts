@@ -43,10 +43,11 @@ export enum ApplicationKey {
   BGP = 'bgp',
 }
 
-export const VirtualMachines: VirtualMachine[] = [
-  {
-    id: 1,
-    name: 'EC2 #1',
+export const VirtualMachines: VirtualMachine[] = [];
+for (let i = 0; i < 100; i++) {
+  VirtualMachines.push({
+    id: i,
+    name: `EC2 #${i}`,
     data: '',
     ccrs: [
       {
@@ -54,52 +55,8 @@ export const VirtualMachines: VirtualMachine[] = [
         state: 'DEPLOYED',
       },
     ],
-  },
-  {
-    id: 2,
-    name: 'EC2 #2',
-    data: '',
-    ccrs: [
-      {
-        name: 'AWS_EIP',
-        state: 'DEPLOYED',
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: 'EC2 #3',
-    data: '',
-    ccrs: [
-      {
-        name: 'AWS_EIP',
-        state: 'DEPLOYED',
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: 'VM #1',
-    data: '',
-    ccrs: [
-      {
-        name: 'AZURERM_PUBLIC_IP',
-        state: 'DEPLOYED',
-      },
-    ],
-  },
-  {
-    id: 5,
-    name: 'VM #2',
-    data: '',
-    ccrs: [
-      {
-        name: 'AZURERM_PUBLIC_IP',
-        state: 'DEPLOYED',
-      },
-    ],
-  },
-];
+  });
+}
 
 export const VirtualMachineGroups: VirtualMachineGroup[] = [
   {
