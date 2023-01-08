@@ -66,7 +66,7 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Create policy</ng-template>
-      <p class="text-sm">Which VM Group will use the service created in the previous step?</p>
+      <p class="text-sm">Which VM Group will use the service <strong>Service Name</strong>?</p>
       <div class="step-content flex-col w-64 m-auto">
         <mat-form-field appearance="outline">
           <mat-label>Select VM group</mat-label>
@@ -86,19 +86,24 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Confirm</ng-template>
-      <p>
+      <p class="text-sm">
         The following Service Access Policy has been created. Would you like to
         deploy?
       </p>
-      <div class="step-content">
-        List details of policy here so user can confirm it looks correct.
+      <div class="text-sm step-content w-64 m-auto grid grid-cols-2 gap-4">
+        <div class="text-right font-medium">Consuming Group</div>
+        <div>VM Group #1</div>
+        <div class="text-right font-medium">Serving Group</div>
+        <div>VM Group #2</div>
+        <div class="text-right font-medium">Application</div>
+        <div>Applications</div>
       </div>
       <div>
         <button class="step-buttons" mat-button matStepperNext>
           Deploy policy
         </button>
-        <button class="step-buttons" mat-button matStepperPrevious>
-          Back
+        <button class="step-buttons" mat-button>
+          Close
         </button>
       </div>
     </mat-step>

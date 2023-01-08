@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CreateApplicationDialogComponent } from './create-application-dialog/create-application-dialog.component';
 import { CreateGroupDialogComponent } from './create-group-dialog/create-group-dialog.component';
 
 @Component({
@@ -10,7 +11,11 @@ import { CreateGroupDialogComponent } from './create-group-dialog/create-group-d
 export class AppComponent {
   constructor(private _dialog: MatDialog) {}
 
-  public openCreateDialog() {
+  public openCreatePolicyDialog() {
     this._dialog.open(CreateGroupDialogComponent);
+  }
+
+  public openCreateApplicationDialog() {
+    this._dialog.open(CreateApplicationDialogComponent);
   }
 }
