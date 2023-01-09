@@ -5,7 +5,6 @@
   (matSortChange)="announceSortChange($event)"
   class="mat-elevation-z8"
 >
-  <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th
       mat-header-cell
@@ -18,7 +17,6 @@
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="instances">
     <th
       mat-header-cell
@@ -31,7 +29,6 @@
     <td mat-cell *matCellDef="let element">{{ element.instances }}</td>
   </ng-container>
 
-  <!-- Symbol Column -->
   <ng-container matColumnDef="services-provided">
     <th
       mat-header-cell

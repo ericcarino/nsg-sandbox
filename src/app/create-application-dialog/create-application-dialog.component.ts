@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-create-application-dialog',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-application-dialog.component.css']
 })
 export class CreateApplicationDialogComponent implements OnInit {
+  formGroup = this._fb.group({
+    name: [''],
+    protocol: [''],
+    port: ['']
+  });
 
-  constructor() { }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit() {
   }
