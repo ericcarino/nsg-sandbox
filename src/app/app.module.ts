@@ -17,6 +17,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateApplicationDialogComponent } from './create-application-dialog/create-application-dialog.component';
+import { InstancesComponent } from './instances/instances.component';
+import { PoliciesComponent } from './policies/policies.component';
+import { ServicesComponent } from './services/services.component';
 
 @NgModule({
   imports: [
@@ -39,6 +42,9 @@ import { CreateApplicationDialogComponent } from './create-application-dialog/cr
     InstanceGroupsComponent,
     CreateGroupDialogComponent,
     CreateApplicationDialogComponent,
+    InstancesComponent,
+    PoliciesComponent,
+    ServicesComponent,
   ],
   bootstrap: [AppComponent],
 })

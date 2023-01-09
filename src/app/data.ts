@@ -1,8 +1,7 @@
 export interface VirtualMachineGroup {
+  id: number;
   name: string;
   virtualMachines: number[];
-  servicesProvided?: string[];
-  servicesConsumed?: string[];
 }
 
 export interface VirtualMachine {
@@ -24,13 +23,13 @@ export interface Application {
 export interface Service {
   id: number;
   application: ApplicationKey;
-  groups: VirtualMachineGroup[];
+  groupId: number;
 }
 
 export interface ServiceAccessPolicy {
   id: number;
-  services: number[];
-  groups: VirtualMachineGroup[];
+  serviceId: number;
+  groupId: number;
 }
 
 export enum ApplicationKey {
@@ -60,14 +59,14 @@ for (let i = 0; i < 100; i++) {
 
 export const VirtualMachineGroups: VirtualMachineGroup[] = [
   {
+    id: 1,
     name: 'My VM Group #1',
     virtualMachines: [1, 4],
-    servicesProvided: ['ssh'],
   },
   {
+    id: 2,
     name: 'My VM Group #2',
     virtualMachines: [2],
-    servicesConsumed: ['ftp'],
   },
 ];
 
@@ -108,4 +107,18 @@ Applications[ApplicationKey.BGP] = {
   port: 179,
 };
 
-export const ELEMENT_DATA = [];
+export const Services: Service[] = [
+  {
+    id: 1,
+    application: ApplicationKey.FTP,
+    groupId: VirtualMachineGroups[0].id,
+  },
+];
+
+export const ServiceAccessPolicies: ServiceAccessPolicy[] = [
+  {
+    id: 1,
+    serviceId: 1,
+    groupId: VirtualMachineGroups[1].id,
+  },
+];
