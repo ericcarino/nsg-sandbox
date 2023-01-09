@@ -60,13 +60,17 @@
         </mat-form-field>
       </div>
       <div>
-        <button class="step-buttons" mat-button matStepperNext>Create service</button>
+        <button class="step-buttons" mat-button matStepperNext>
+          Create service
+        </button>
         <button class="step-buttons" mat-button matStepperPrevious>Back</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Create policy</ng-template>
-      <p class="text-sm">Which VM Group will use the service <strong>Service Name</strong>?</p>
+      <p class="text-sm">
+        Which VM Group will use the service <strong>Service Name</strong>?
+      </p>
       <div class="step-content flex-col w-64 m-auto">
         <mat-form-field appearance="outline">
           <mat-label>Select VM group</mat-label>
@@ -96,15 +100,13 @@
         <div class="text-right font-medium">Serving Group</div>
         <div>VM Group #2</div>
         <div class="text-right font-medium">Application</div>
-        <div>Applications</div>
+        <div>SSH (tcp/22)</div>
       </div>
       <div>
-        <button class="step-buttons" mat-button matStepperNext>
+        <button class="step-buttons" mat-button mat-dialog-close matStepperNext>
           Deploy policy
         </button>
-        <button class="step-buttons" mat-button>
-          Close
-        </button>
+        <button class="step-buttons" mat-button mat-dialog-close>Close</button>
       </div>
     </mat-step>
   </mat-stepper>

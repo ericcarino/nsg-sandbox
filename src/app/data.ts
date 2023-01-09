@@ -72,37 +72,37 @@ export const VirtualMachineGroups: VirtualMachineGroup[] = [
 
 export const Applications: { [key: string]: Application } = {};
 Applications[ApplicationKey.FTP] = {
-  name: 'File Transfer Protocol',
+  name: 'FTP (tcp/20-21)',
   protocol: ApplicationKey.FTP,
   port: 21,
 };
 Applications[ApplicationKey.SSH] = {
-  name: 'Secure Shell',
+  name: 'SSH (tcp/22)',
   protocol: ApplicationKey.SSH,
   port: 22,
 };
 Applications[ApplicationKey.SMTP] = {
-  name: 'Simple Mail Transfer Protocol',
+  name: 'SMTP (tcp/25)',
   protocol: ApplicationKey.SMTP,
   port: 25,
 };
 Applications[ApplicationKey.DNS] = {
-  name: 'Domain Name System',
+  name: 'DNS (udp/53)',
   protocol: ApplicationKey.DNS,
   port: 53,
 };
 Applications[ApplicationKey.HTTP] = {
-  name: 'Hypertext Transfer Protocol',
+  name: 'HTTP (tcp/80)',
   protocol: ApplicationKey.HTTP,
   port: 80,
 };
 Applications[ApplicationKey.NTP] = {
-  name: 'Network Time Protocol',
+  name: 'NTP (tcp/123)',
   protocol: ApplicationKey.NTP,
   port: 123,
 };
 Applications[ApplicationKey.BGP] = {
-  name: 'Border Gateway Protocol',
+  name: 'BGP (tcp/179)',
   protocol: ApplicationKey.BGP,
   port: 179,
 };

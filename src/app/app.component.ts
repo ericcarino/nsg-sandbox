@@ -12,10 +12,14 @@ export class AppComponent {
   constructor(private _dialog: MatDialog) {}
 
   public openCreatePolicyDialog() {
-    this._dialog.open(CreateGroupDialogComponent);
+    this._dialog.open(CreateGroupDialogComponent, {
+      width: '60%',
+    });
   }
 
   public openCreateApplicationDialog() {
-    this._dialog.open(CreateApplicationDialogComponent);
+    this._dialog.open(CreateApplicationDialogComponent, {
+      width: '60%',
+    });
   }
 }

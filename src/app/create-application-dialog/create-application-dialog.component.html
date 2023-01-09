@@ -1,18 +1,30 @@
 <h1 mat-dialog-title>Create Application</h1>
 <div mat-dialog-content>
   <form [formGroup]="formGroup">
-    <div class="step-content flex-col w-64 m-auto pt-10">
+    <div class="flex-col w-64 m-auto pt-10">
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Enter application name" formControlName="name"/>
+        <input
+          matInput
+          placeholder="Enter application name"
+          formControlName="name"
+        />
       </mat-form-field>
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Protocol</mat-label>
-        <input matInput placeholder="Enter protocol" formControlName="protocol"/>
+        <input
+          matInput
+          placeholder="Enter protocol"
+          formControlName="protocol"
+        />
       </mat-form-field>
       <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Port</mat-label>
-        <input matInput placeholder="Enter port number" formControlName="port"/>
+        <input
+          matInput
+          placeholder="Enter port number"
+          formControlName="port"
+        />
       </mat-form-field>
     </div>
   </form>
