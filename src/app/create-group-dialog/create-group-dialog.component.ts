@@ -37,15 +37,15 @@ export class CreateGroupDialogComponent implements OnInit {
   }
 
   public createService() {
-    const serviceName = this.policyForm.get('serviceName') as unknown as string;
-    const application = this.policyForm.get('application') as unknown as Application;
-    const servingGroup = this.policyForm.get('servingGroup') as unknown as VirtualMachineGroup;
+    const serviceName = this.policyForm.get('serviceName').value as unknown as string;
+    const application = this.policyForm.get('application').value as unknown as string;
+    const servingGroup = this.policyForm.get('servingGroup').value as unknown as VirtualMachineGroup;
 
-    // Services.push({
-    //   id: Math.random(),
-    //   application: application.
-    //   groupId: servingGroup
-    // });
+    Services.push({
+      id: Math.random(),
+      application: application.,
+      groupId: servingGroup.id
+    });
 
     debugger
   }

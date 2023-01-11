@@ -57,7 +57,7 @@
             <mat-select formControlName="application">
               <mat-option
                 *ngFor="let application of applications | keyvalue"
-                [value]="application"
+                [value]="application.key"
                 >{{ application.value.name }}</mat-option
               >
             </mat-select>
