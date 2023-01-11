@@ -49,6 +49,7 @@ export class CreateGroupDialogComponent implements OnInit {
 
     this.serviceName = serviceName;
     this.servingGroupName = servingGroup.name;
+    this.applicationName = Applications[application].name;
 
     Services.push({
       id: this._serviceId,
