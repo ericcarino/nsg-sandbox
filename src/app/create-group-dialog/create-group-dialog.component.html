@@ -1,113 +1,140 @@
 <h1 mat-dialog-title>Create Network Access Policy</h1>
 <div mat-dialog-content>
-  <mat-stepper labelPosition="bottom" #stepper>
-    <mat-step>
-      <ng-template matStepLabel>Create VM Group(s)</ng-template>
-      <p class="text-sm">
-        If needed, create your Virtual Machine Group(s). When done, click Next.
-      </p>
-      <div class="step-content flex-col w-64 m-auto">
-        <mat-form-field appearance="outline" floatLabel="always">
-          <mat-label>Name</mat-label>
-          <input matInput placeholder="Enter VM group name" />
-        </mat-form-field>
-        <h4>Select VMs</h4>
-        <div class="max-h-72 overflow-y-scroll">
-          <mat-selection-list>
-            <mat-list-option *ngFor="let vm of virtualMachines">
-              {{ vm.name }}
-            </mat-list-option>
-          </mat-selection-list>
-        </div>
-        <div class="flex place-content-end mt-4">
-          <button mat-flat-button color="primary">Create group</button>
-        </div>
-      </div>
-      <div>
-        <button class="step-buttons" mat-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Create service</ng-template>
-      <div class="step-content flex-col w-64 m-auto">
-        <div>
+  <form [formGroup]="policyForm">
+    <mat-stepper labelPosition="bottom" #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Create VM Group(s)</ng-template>
+        <p class="text-sm">
+          If needed, create your Virtual Machine Group(s). When done, click
+          Next.
+        </p>
+        <div class="step-content flex-col w-64 m-auto">
           <mat-form-field appearance="outline" floatLabel="always">
             <mat-label>Name</mat-label>
-            <input matInput placeholder="Enter service name" />
+            <input
+              formControlName="name"
+              matInput
+              placeholder="Enter VM group name"
+            />
+          </mat-form-field>
+          <h4>Select VMs</h4>
+          <div class="max-h-72 overflow-y-scroll">
+            <mat-selection-list formControlName="vms">
+              <mat-list-option
+                *ngFor="let vm of virtualMachines"
+                [value]="vm.id"
+              >
+                {{ vm.name }}
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+          <div class="flex place-content-end mt-4">
+            <button mat-flat-button color="primary" (click)="createVmGroup()">
+              Create group
+            </button>
+          </div>
+        </div>
+        <div>
+          <button class="step-buttons" mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Create service</ng-template>
+        <div class="step-content flex-col w-64 m-auto">
+          <div>
+            <mat-form-field appearance="outline" floatLabel="always">
+              <mat-label>Name</mat-label>
+              <input
+                formControlName="serviceName"
+                matInput
+                placeholder="Enter service name"
+              />
+            </mat-form-field>
+          </div>
+          <div>Assign</div>
+          <mat-form-field appearance="outline">
+            <mat-label>Application</mat-label>
+            <mat-select formControlName="application">
+              <mat-option
+                *ngFor="let application of applications | keyvalue"
+                [value]="application"
+                >{{ application.value.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <div>to</div>
+          <mat-form-field appearance="outline">
+            <mat-label>VM Group</mat-label>
+            <mat-select formControlName="servingGroup">
+              <mat-option
+                *ngFor="let group of virtualMachineGroups"
+                [value]="group"
+                >{{ group.name }}</mat-option
+              >
+            </mat-select>
           </mat-form-field>
         </div>
-        <div>Assign</div>
-        <mat-form-field appearance="outline">
-          <mat-label>Application</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let application of applications | keyvalue"
-              [value]="application"
-              >{{ application.value.name }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-        <div>to</div>
-        <mat-form-field appearance="outline">
-          <mat-label>VM Group</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let group of virtualMachineGroups"
-              [value]="group"
-              >{{ group.name }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <button class="step-buttons" mat-button matStepperNext>
-          Create service
-        </button>
-        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Create policy</ng-template>
-      <p class="text-sm">
-        Which VM Group will use the service <strong>Service Name</strong>?
-      </p>
-      <div class="step-content flex-col w-64 m-auto">
-        <mat-form-field appearance="outline">
-          <mat-label>Select VM group</mat-label>
-          <mat-select>
-            <mat-option
-              *ngFor="let group of virtualMachineGroups"
-              [value]="group"
-              >{{ group.name }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <button class="step-buttons" mat-button matStepperNext>Next</button>
-        <button class="step-buttons" mat-button matStepperPrevious>Back</button>
-      </div>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Confirm</ng-template>
-      <p class="text-sm">
-        The following Service Access Policy has been created. Would you like to
-        deploy?
-      </p>
-      <div class="text-sm step-content w-64 m-auto grid grid-cols-2 gap-4">
-        <div class="text-right font-medium">Consuming Group</div>
-        <div>VM Group #1</div>
-        <div class="text-right font-medium">Serving Group</div>
-        <div>VM Group #2</div>
-        <div class="text-right font-medium">Application</div>
-        <div>SSH (tcp/22)</div>
-      </div>
-      <div>
-        <button class="step-buttons" mat-button mat-dialog-close matStepperNext>
-          Deploy policy
-        </button>
-        <button class="step-buttons" mat-button mat-dialog-close>Close</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
+        <div>
+          <button class="step-buttons" mat-button matStepperNext (click)="createService()">
+            Create service
+          </button>
+          <button class="step-buttons" mat-button matStepperPrevious>
+            Back
+          </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Create policy</ng-template>
+        <p class="text-sm">
+          Which VM Group will use the service <strong>Service Name</strong>?
+        </p>
+        <div class="step-content flex-col w-64 m-auto">
+          <mat-form-field appearance="outline">
+            <mat-label>Select VM group</mat-label>
+            <mat-select formControlName="consumingGroup">
+              <mat-option
+                *ngFor="let group of virtualMachineGroups"
+                [value]="group"
+                >{{ group.name }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <button class="step-buttons" mat-button matStepperNext>Next</button>
+          <button class="step-buttons" mat-button matStepperPrevious>
+            Back
+          </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Confirm</ng-template>
+        <p class="text-sm">
+          The following Service Access Policy has been created. Would you like
+          to deploy?
+        </p>
+        <div class="text-sm step-content w-64 m-auto grid grid-cols-2 gap-4">
+          <div class="text-right font-medium">Consuming Group</div>
+          <div>VM Group #1</div>
+          <div class="text-right font-medium">Serving Group</div>
+          <div>VM Group #2</div>
+          <div class="text-right font-medium">Application</div>
+          <div>SSH (tcp/22)</div>
+        </div>
+        <div>
+          <button
+            class="step-buttons"
+            mat-button
+            mat-dialog-close
+            matStepperNext
+          >
+            Deploy policy
+          </button>
+          <button class="step-buttons" mat-button mat-dialog-close>
+            Close
+          </button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </form>
 </div>
